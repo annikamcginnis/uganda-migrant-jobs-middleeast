@@ -23,8 +23,11 @@ jobs:
       with:
         python-version: '3.10'
 
-    - name: Install all necessary packages
-      run: pip install playwright jupyter lxml pandas requests beautifulsoup4 html5lib playwright install
+    - name: Install Python packages
+      run: pip install playwright jupyter lxml pandas requests beautifulsoup4 html5lib
+
+    - name: Install Playwright browsers
+      run: playwright install  # This command downloads the required browsers
 
     # Sequentially execute six notebooks and output results to logs
     - name: Execute Notebook 1
