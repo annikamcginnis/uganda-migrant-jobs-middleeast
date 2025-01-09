@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+	<title>MIGRATING TO BE MAIDS: Companies based in Uganda and the Middle East are recruiting workers from Uganda for domestic labor jobs in Saudi Arabia</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- 
+THESE ARE CALLS TO DIFFERENT EXTERNAL FILES
+MAPBOX HAS A JAVASCRIPT LIBRARY THAT YOU NEED
+THE NEXT IS A CSS FILE FOR THE MAP
+AND THE FINAL ONE IS THE LIBRARY FOR JQUERY, WHICH I USE FOR THE PULLDOWN MENU.
+ -->
+
+<script src='https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.css' rel='stylesheet' />
+	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<!-- 
+THESE ARE CSS STYLES WHICH YOU SHOULD FREELY PLAY WITH
+THE STYLES THAT BEGIN WITH # RELATE TO IDS, 
+THE ONES THAT BEGIN WITH . RELATE TO CLASSES
+WHEN YOU GOT EVERYTHING WORKING YOU CAN PLAY WITH THESE AND ADD TO THESE 
+TO MAKE YOUR FONTS AND LAYOUTS NICE AND LOVELY
+ -->
+
+	<style>
+		::-webkit-scrollbar {
+			width: 0px;
+			/* remove scrollbar space */
+			background: transparent;
+			/* optional: just make scrollbar invisible */
+		}
+
+		.info {
+			padding: 6px 8px;
+			font: 20px/24px Arial, Helvetica, sans-serif;
+			background: #BFD7EA;
+			box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+			border-radius: 5px;
+		}
+
+		.info h4 {
+			margin: 0 0 5px;
+			color: #777;
+		}
+
+		.legend {
+			text-align: left;
+			line-height: 20px;
+			color: #555;
+		}
+
+		.legend i {
+			width: 24px;
+			height: 24px;
+			float: left;
+			margin-right: 8px;
+			opacity: 0.7;
+		}
+
+		body {
+			display: flex;
+		}
+
+		#select-menu {
+			position: absolute;
+			left: 50px;
+			top: 10px;
+			z-index: 10;
+		}
+		#headPlace {
+			position: absolute;
+			right: 0px;
+			top: 0px;
+			z-index: 10;
+
+		padding: 10px;
+		width: 200px;
+			background-color: #DDDDDD;
+
+		}
+		#headPlace2 {
+			position: absolute;
+			right: 0px;
+			top: 0px;
+			z-index: 10;
+
+		padding: 10px;
+		width: 200px;
+			background-color: #DDDDDD;
+
+		}
+		#map {
+
+			width: 800px;
+			height: 500px;
+			margin: 0 auto;
+
+
+		}
+				#map2 {
+
+			width: 800px;
+			height: 500px;
+			margin: 0 auto;
+
+		}
+		#articlePlace {
+			overflow: scroll;
+			margin: 10px;
+			font-size: large;
+			text-align: left;
+			
+		}
+		
+		#container {
+  			columns: 2;
+			width: 100%;
+		}
+
+		#header {
+			text-align: center;
+			padding-left: 10px;
+			padding-right: 10px;
+		}
+
+		#footer {
+			text-align: center;
+			font-size: smaller;
+		}
+
+
+		body {
+			background-color: #FDE2D2;
+		}
+
+		p {
+  			line-height: 1.5; 
+			color: #364042;
+			font-family: Arial, Helvetica, sans-serif;
+}
+		h1 {
+			font-family: Verdana, Geneva, Tahoma, sans-serif;
+			color: #364042;
+		}
+
+		h2 {
+			font-family: Verdana, Geneva, Tahoma, sans-serif;
+			color: #364042;	
+		}
+
+	</style>
+
+</head>
+<!-- THE BODY OF THE HTML BEGINS HERE -->
+
+<body>
+
+
+
+	<!-- 
+THE DIVS BELOW ARE SUPER IMPORTANT:
+THEY ARE WHERE THE MAP WILL GO, AND YOUR ARTICLE TEXT WILL GO
+YOU WILL CERTAINLY WANT TO STYLE THESE, BOTH THEIR PLACEMENT AND CONTENT 
+THE MAP SHOULD BE EMPTY.
+WHATEVER INTRODUCTORY TEXT YOU WANT CAN GO INTO THE ARTICLEPLACE DIV
+ -->
+<div> 
+
+<div id='header'> <h1 style="font-size: 50px">MIGRATING TO BE MAIDS</h1><h2>Companies recruiting Ugandan workers for domestic labor jobs in the Middle East</h2><br>
+
+
+<div id="container">
+	<div id='map'>
+		<div id='headPlace'> Roll over a point to get info on the recruiting company and number of current open positions. Click on a point for more details.</div>
+	</div>
+	<div id='map2'>
+		<div id='headPlace2'> Roll over a point to get info on the recruiting company and number of current open positions. Click on a point for more details.</div>
+	</div>
+</div>
+
+<div id="articlePlace"><p>In Uganda, thousands of young people, mainly women, are migrating to the Middle East for low-skilled jobs primarily in domestic labor. Despite the promise of a secure income and savings that they will be able to send back home to their families, reports have illuminated that many people find themselves in exploitative positions, and some find it difficult to return to their home country. Uganda’s Ministry of Gender, Labour & Social Development has recently started publishing an ongoing list of officially vetted companies recruiting these positions abroad and their specific job openings on its External Employment Management System. Explore this map to find out more about the companies hiring and their open positions.</p></div>
+<hr>
+<div id="footer"><p><i>This website was made for a class in the 2024-2025 Columbia University Data Journalism master's program, by Annika McGinnis.<br>The map shows data from the <a href="https://eemis.mglsd.go.ug/" target="_blank">Uganda Ministry of Gender, Labour & Social Development External Employment Management System</a>. It auto-updates daily. Get the data.</i></p></div>
+
+</div>
+	
+	<!-- 
+INSIDE THE MAP DIV  ARE TWO THINGS, THE HEADLINE AND THE DROP-DOWN MENU
+
+
+DROP-DOWN MENU: THE ID select–menu IS USED BY THE JQUERY FUNCTION WAY DOWN AT THE BOTTOM
+THIS HTML SETS UP THE PULLDOWN MENU
+IF YOU HAVE MULTIPLE GROUPS THE JQUERY AT THE BOTTOM 
+WILL UPDATE THE SELECT MENU FOR YOU
+
+HEADLINE: NOTE, YOU CAN USE THE STABLE DIV TO SHOW THE HEADLINE
+OR POP-UPS. IN THIS TEMPLATE THE POP-UPS ARE COMMENTED OUT
+YOU CAN UN-COMMENT THEM TO MAKE THEM ACTIVE.
+ -->
+
+	<!-- 
+THIS IS WHERE THE BROWSER LOADS IN YOUR GEOJSON INFORMATION
+MAKING IT A JAVASCRIPT FILE .js, RATHER THAN A GEOJSON FILE
+ALLOWS YOU TO LOAD IT LOCALLY WITHOUT DEALING WITH SETTING UP SERVERS ON YOUR MACHINE.
+ -->
+
+	<script type="text/javascript" src="uganda_migrant_jobs_map_1.js"></script>
+	<script type="text/javascript" src="uganda_migrant_jobs_map_2.js"></script>
+
+	<!-- 
+HERE BEGINS ALL THE SCRIPT THAT SETS UP THE MAP 
+ALL THE COMMENTS FROM HERE WE'LL BE IN JAVASCRIPT COMMENTS //
+ -->
+
+	<script type="text/javascript">
+// these seven lines maybe the only lines you need to edit
+// you should put in your own access token
+// you can change the style of the tiles
+// as well as the center and the zoom
+
+// but note that way down below this is a method that auto centers and zooms:
+// map.fitBounds(turf.bbox(infoData), { padding: 120, linear: true })
+//If you want to control the centering and zoom yourself, comment out that line.
+	//This is my (Jon's)  access token, please sign up and get one for yourself if you plan to share your map
+		mapboxgl.accessToken = 'pk.eyJ1IjoibWNnaW5uaXNhbm5pa2EiLCJhIjoiY200YWkzYXBoMDA0ZzJrcHA5aHJvbnB4MyJ9.6uJnaHT2MyqY_87QOL6x1g';
+
+		var map = new mapboxgl.Map({
+			container: 'map', // HTML container ID
+			style: 'mapbox://styles/mapbox/light-v10', // style URL
+			center: [ 32.59551637737115, 0.3183500203624279], // starting position as [lng, lat] (in iceland)
+			zoom: 11,
+			projection: 'naturalEarth'
+		});
+		map.addControl(new mapboxgl.NavigationControl(), 'top-left')
+
+// all of this JavaScript manages what's displayed on hover and click
+		var popup = new mapboxgl.Popup({ closeButton: false, closeOnClick: false });
+
+		let hoverCurrentId = null
+		var datalayer;
+
+		function updateArticle(e) {
+			let feature = e.features[0]
+			document.getElementById("articlePlace").innerHTML = feature.properties.article
+		}
+		function updateHead(e) {
+			let feature = e.features[0]
+			map.getCanvas().style.cursor = 'pointer';
+			document.getElementById("headPlace").innerHTML = feature.properties.headline
+
+		}
+		function removeHead(e) {
+			document.getElementById("headPlace").innerHTML = "&nbsp;"
+			map.getCanvas().style.cursor = '';
+
+		}
+
+		function startHover(e) {
+			let feature = e.features[0]
+
+			if (hoverCurrentId) {
+				map.setFeatureState({ source: 'datalayer', id: hoverCurrentId }, { hover: false });
+			}
+			hoverCurrentId = feature.id
+			map.setFeatureState({ source: 'datalayer', id: hoverCurrentId }, { hover: true });
+		}
+
+		function stopHover(e) {
+			if (hoverCurrentId) {
+				map.setFeatureState({ source: 'datalayer', id: hoverCurrentId }, { hover: false });
+			}
+			hoverCurrentId = null;
+		}
+
+		function drawPopup(e) {
+			let feature = e.features[0]
+			map.getCanvas().style.cursor = 'pointer';
+
+			var coordinates = feature.geometry.coordinates.slice();
+			var headline = feature.properties.headline;
+
+			while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+				coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+			}
+
+			popup.setLngLat(coordinates)
+				.setHTML(`<h4>${headline}</h4>`)
+				.addTo(map);
+		}
+
+		function removePopup(e) {
+			map.getCanvas().style.cursor = '';
+			popup.remove();
+		}
+
+		map.on('load', function () {
+			for (let i = 0; i < infoData.features.length; i++) {
+				infoData.features[i]['id'] = i + 1
+			}
+// the JavaScript below sets up the styles of the colors based on your properties
+// color, radius, and rating
+
+// Soma's explanation of 'paint': https://gist.github.com/jsoma/c91cfa7a1f4f8346d95ac2a907f0cb0c
+
+			datalayer = map.addLayer({
+				id: "datalayer",
+				type: "circle",
+				source: {
+					type: "geojson",
+					data: infoData,
+				},
+				paint: {
+					'circle-radius': ['to-number', ['get', 'radius']],
+					'circle-stroke-color': 'white',
+					'circle-stroke-width': 2,
+					'circle-color': [
+						'case',
+						['boolean', ['feature-state', 'hover'], false],
+						'#666',
+						['get', 'color'],
+					],
+					'circle-opacity': [
+						'case',
+						['boolean', ['feature-state', 'hover'], false],
+						1,
+						0.5
+					]
+				}
+			});
+// these functions control Mouse actions
+// they make the pop-up headline or update the article text
+			// When we move the mouse over, draw the popup and change the hover style
+			map.on('mouseenter', 'datalayer', function (e) {
+				startHover(e)
+// uncomment this line to get pop-ups
+// 				drawPopup(e)
+				updateHead(e)
+			});
+
+			// When we move the mouse away from a point, turn off the hovering and popup
+			map.on('mouseleave', 'datalayer', function (e) {
+				stopHover(e)
+// uncomment this line to get pop-ups
+// 				removePopup(e)
+				removeHead(e)
+			});
+
+			// When we click, update the article (the right-hand side)
+			map.on('click', 'datalayer', function (e) {
+				updateArticle(e)
+			})
+
+// very important!! this automatically centers the map and zooms it
+
+		})	
+
+
+		var map2 = new mapboxgl.Map({
+			container: 'map2', // HTML container ID
+			style: 'mapbox://styles/mapbox/light-v10', // style URL
+			center: [ 46.69338354390172, 24.719840483830474], // starting position as [lng, lat] (in iceland)
+			zoom: 4,
+			projection: 'naturalEarth'
+		});
+		map2.addControl(new mapboxgl.NavigationControl(), 'top-left')
+
+// all of this JavaScript manages what's displayed on hover and click
+		var popup2 = new mapboxgl.Popup({ closeButton: false, closeOnClick: false });
+
+		let hoverCurrentId2 = null
+		var datalayer2;
+
+		function updateArticle2(e) {
+			let feature = e.features[0]
+			document.getElementById("articlePlace").innerHTML = feature.properties.article
+		}
+		function updateHead2(e) {
+			let feature = e.features[0]
+			map2.getCanvas().style.cursor = 'pointer';
+			document.getElementById("headPlace2").innerHTML = feature.properties.headline
+
+		}
+		function removeHead2(e) {
+			document.getElementById("headPlace2").innerHTML = "&nbsp;"
+			map2.getCanvas().style.cursor = '';
+
+		}
+
+		function startHover2(e) {
+			let feature = e.features[0]
+
+			if (hoverCurrentId2) {
+				map2.setFeatureState({ source: 'datalayer2', id: hoverCurrentId2 }, { hover: false });
+			}
+			hoverCurrentId2 = feature.id
+			map2.setFeatureState({ source: 'datalayer2', id: hoverCurrentId2 }, { hover: true });
+		}
+
+		function stopHover2(e) {
+			if (hoverCurrentId2) {
+				map2.setFeatureState({ source: 'datalayer2', id: hoverCurrentId2 }, { hover: false });
+			}
+			hoverCurrentId2 = null;
+		}
+
+		function drawPopup2(e) {
+			let feature = e.features[0]
+			map2.getCanvas().style.cursor = 'pointer';
+
+			var coordinates = feature.geometry.coordinates.slice();
+			var headline2 = feature.properties.headline;
+
+			while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+				coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+			}
+
+			popup.setLngLat(coordinates)
+				.setHTML(`<h4>${headline2}</h4>`)
+				.addTo(map);
+		}
+
+		function removePopup2(e) {
+			map2.getCanvas().style.cursor = '';
+			popup.remove();
+		}
+
+		map2.on('load', function () {
+			for (let i = 0; i < infoData2.features.length; i++) {
+				infoData2.features[i]['id'] = i + 1
+			}
+// the JavaScript below sets up the styles of the colors based on your properties
+// color, radius, and rating
+
+// Soma's explanation of 'paint': https://gist.github.com/jsoma/c91cfa7a1f4f8346d95ac2a907f0cb0c
+
+			datalayer = map2.addLayer({
+				id: "datalayer2",
+				type: "circle",
+				source: {
+					type: "geojson",
+					data: infoData2,
+				},
+				paint: {
+					'circle-radius': ['to-number', ['get', 'radius']],
+					'circle-stroke-color': 'white',
+					'circle-stroke-width': 2,
+					'circle-color': [
+						'case',
+						['boolean', ['feature-state', 'hover'], false],
+						'#666',
+						['get', 'color'],
+					],
+					'circle-opacity': [
+						'case',
+						['boolean', ['feature-state', 'hover'], false],
+						1,
+						0.5
+					]
+				}
+			});
+// these functions control Mouse actions
+// they make the pop-up headline or update the article text
+			// When we move the mouse over, draw the popup and change the hover style
+			map2.on('mouseenter', 'datalayer2', function (e) {
+				startHover2(e)
+// uncomment this line to get pop-ups
+// 				drawPopup(e)
+				updateHead2(e)
+			});
+
+			// When we move the mouse away from a point, turn off the hovering and popup
+			map2.on('mouseleave', 'datalayer2', function (e) {
+				stopHover2(e)
+// uncomment this line to get pop-ups
+// 				removePopup(e)
+				removeHead2(e)
+			});
+
+			// When we click, update the article (the right-hand side)
+			map2.on('click', 'datalayer2', function (e) {
+				updateArticle2(e)
+			})
+
+// very important!! this automatically centers the map and zooms it
+
+		})		
+
+
+	</script>
+
+</body>
+
+</html>
