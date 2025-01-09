@@ -1,0 +1,55 @@
+# You can name this whatever you want
+name: update
+
+# Permissions to allow committing changes
+permissions:
+  contents: write
+  
+# Triggers for the workflow
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 23 * * *'  # Runs every 2 hours
+
+jobs:
+  daily:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out this repo
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.10'
+
+    - name: Install all necessary packages
+      run: pip install jupyter lxml pandas requests beautifulsoup4 html5lib
+
+    # Sequentially execute six notebooks and output results to logs
+    - name: Execute Notebook 1
+      run: jupyter nbconvert --to notebook --execute "1. Scraping EEMIS Companies.ipynb" --stdout
+
+    - name: Execute Notebook 2
+      run: jupyter nbconvert --to notebook --execute "2. Scraping EEMIS Jobs.ipynb" --stdout
+
+    - name: Execute Notebook 3
+      run: jupyter nbconvert --to notebook --execute "3. Combining Companies and Jobs Data.ipynb" --stdout
+
+    - name: Execute Notebook 4
+      run: jupyter nbconvert --to notebook --execute "4. Data Cleaning and Adding Columns.ipynb" --stdout
+
+    - name: Execute Notebook 5
+      run: jupyter nbconvert --to notebook --execute "5. EEMIS Analysis.ipynb" --stdout
+
+    - name: Execute Notebook 6
+      run: jupyter nbconvert --to notebook --execute "6. Mapping.ipynb" --stdout
+
+    - name: Commit and push any changes
+      run: |-
+        git config user.name "Automated"
+        git config user.email "actions@users.noreply.github.com"
+        git add -A
+        timestamp=$(date -u)
+        git commit -m "Latest data: ${timestamp}" || exit 0
+        git push
