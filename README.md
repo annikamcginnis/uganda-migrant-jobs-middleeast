@@ -96,6 +96,8 @@ I auto-update the scraping and analysis process (Jupyter notebooks 1-6) using Gi
 
 The map shows all companies (including those not currently listed on the site) and all currently open job positions. 
 
+*Note: "/data from 12:8:24" contains data scraped on Dec. 8, 2024, which is not included in the running database. The running database begins on Jan. 10, 2025.*
+
 
 
 
