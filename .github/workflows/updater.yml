@@ -53,6 +53,11 @@ jobs:
     - name: Execute Notebook 6
       run: jupyter nbconvert --to notebook --execute "6. Mapping.ipynb" --stdout
 
+    - name: Move .js files to docs folder
+      run: |
+          mv uganda_migrant_jobs_map_1.js docs/
+          mv uganda_migrant_jobs_map_2.js docs/
+
     - name: Commit and push any changes
       run: |-
         git config user.name "Automated"
