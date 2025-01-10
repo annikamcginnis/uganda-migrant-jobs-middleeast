@@ -25,133 +25,144 @@ WHEN YOU GOT EVERYTHING WORKING YOU CAN PLAY WITH THESE AND ADD TO THESE
 TO MAKE YOUR FONTS AND LAYOUTS NICE AND LOVELY
  -->
 
-	<style>
-		::-webkit-scrollbar {
-			width: 0px;
-			/* remove scrollbar space */
-			background: transparent;
-			/* optional: just make scrollbar invisible */
-		}
+ <style>
+	/* Remove scrollbar space */
+	::-webkit-scrollbar {
+		width: 0px;
+		background: transparent;
+	}
 
-		.info {
-			padding: 6px 8px;
-			font: 20px/24px Arial, Helvetica, sans-serif;
-			background: #BFD7EA;
-			box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-			border-radius: 5px;
-		}
+	/* Styling for information box */
+	.info {
+		padding: 6px 8px;
+		font: 20px/24px Arial, Helvetica, sans-serif;
+		background: #BFD7EA;
+		box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+		border-radius: 5px;
+	}
 
-		.info h4 {
-			margin: 0 0 5px;
-			color: #777;
-		}
+	.info h4 {
+		margin: 0 0 5px;
+		color: #777;
+	}
 
-		.legend {
-			text-align: left;
-			line-height: 20px;
-			color: #555;
-		}
+	/* Legend styles */
+	.legend {
+		text-align: left;
+		line-height: 20px;
+		color: #555;
+	}
 
-		.legend i {
-			width: 24px;
-			height: 24px;
-			float: left;
-			margin-right: 8px;
-			opacity: 0.7;
-		}
+	.legend i {
+		width: 24px;
+		height: 24px;
+		float: left;
+		margin-right: 8px;
+		opacity: 0.7;
+	}
 
-		body {
-			display: flex;
-		}
+	/* Flex layout for the body */
+	body {
+		background-color: #FDE2D2;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
 
-		#select-menu {
-			position: absolute;
-			left: 50px;
-			top: 10px;
-			z-index: 10;
-		}
-		#headPlace {
-			position: absolute;
-			right: 0px;
-			top: 0px;
-			z-index: 10;
+	/* Styling for header and footer */
+	#header, #footer {
+		text-align: center;
+		font-family: Verdana, Geneva, Tahoma, sans-serif;
+		color: #364042;
+	}
 
-		padding: 10px;
-		width: 200px;
-			background-color: #DDDDDD;
+	#footer {
+		font-size: smaller;
+	}
 
-		}
-		#headPlace2 {
-			position: absolute;
-			right: 0px;
-			top: 0px;
-			z-index: 10;
+	/* Map container styling */
+	#container {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		gap: 20px;
+		padding: 20px;
+		width: 100%;
+	}
 
-		padding: 10px;
-		width: 200px;
-			background-color: #DDDDDD;
+	/* Each map container */
+	#map, #map2 {
+		flex: 1;
+		min-width: 400px;  /* Wider minimum width for maps */
+		max-width: 800px;  /* Maps can grow but won't exceed this width */
+		height: 500px;     /* Fixed height for maps */
+	}
 
-		}
-		#map {
+	/* Right-align the first map and left-align the second map */
+	#map {
+		margin-left: auto; /* Align to the right */
+	}
 
-			width: 800px;
-			height: 500px;
-			margin: 0 auto;
+	#map2 {
+		margin-right: auto; /* Align to the left */
+	}
 
-
-		}
-				#map2 {
-
-			width: 800px;
-			height: 500px;
-			margin: 0 auto;
-
-		}
-		#articlePlace {
-			overflow: scroll;
-			margin: 10px;
-			font-size: large;
-			text-align: left;
-			
-		}
-		
+	/* Responsive Design: Stack maps vertically on small screens */
+	@media (max-width: 768px) {
 		#container {
-  			columns: 2;
-			width: 100%;
+			flex-direction: column;
+			align-items: center;
 		}
 
-		#header {
-			text-align: center;
-			padding-left: 10px;
-			padding-right: 10px;
+		#map, #map2 {
+			width: 100%; /* Full width on smaller screens */
+			margin-bottom: 20px; /* Space between stacked maps */
 		}
+	}
 
-		#footer {
-			text-align: center;
-			font-size: smaller;
-		}
+	/* Select menu styling */
+	#select-menu {
+		position: absolute;
+		left: 50px;
+		top: 10px;
+		z-index: 10;
+	}
+
+	/* Header containers */
+	#headPlace, #headPlace2 {
+		position: absolute;
+		right: 0;
+		top: 0;
+		z-index: 10;
+		padding: 10px;
+		width: 200px;
+		background-color: #DDDDDD;
+	}
+
+	/* Article container with scroll and padding */
+	#articlePlace {
+		overflow: scroll;
+		margin: 10px;
+		font-size: large;
+		text-align: left;
+		padding-left: 20px;  /* Added left padding */
+		padding-right: 20px; /* Added right padding */
+	}
+
+	/* Styling for text */
+	p {
+		line-height: 1.5;
+		color: #364042;
+		font-family: Arial, Helvetica, sans-serif;
+	}
+
+	h1, h2 {
+		font-family: Verdana, Geneva, Tahoma, sans-serif;
+		color: #364042;
+	}
+</style>
 
 
-		body {
-			background-color: #FDE2D2;
-		}
-
-		p {
-  			line-height: 1.5; 
-			color: #364042;
-			font-family: Arial, Helvetica, sans-serif;
-}
-		h1 {
-			font-family: Verdana, Geneva, Tahoma, sans-serif;
-			color: #364042;
-		}
-
-		h2 {
-			font-family: Verdana, Geneva, Tahoma, sans-serif;
-			color: #364042;	
-		}
-
-	</style>
 
 </head>
 <!-- THE BODY OF THE HTML BEGINS HERE -->
@@ -224,7 +235,7 @@ ALL THE COMMENTS FROM HERE WE'LL BE IN JAVASCRIPT COMMENTS //
 // but note that way down below this is a method that auto centers and zooms:
 // map.fitBounds(turf.bbox(infoData), { padding: 120, linear: true })
 //If you want to control the centering and zoom yourself, comment out that line.
-		mapboxgl.accessToken = 'ACCESS_TOKEN';
+		mapboxgl.accessToken = 'pk.eyJ1IjoibWNnaW5uaXNhbm5pa2EiLCJhIjoiY201cjhtMWN6MDgxcjJrb25raGs4MmFjayJ9.6MGB4e-uZHWgJu4BN6hglA';
 
 		var map = new mapboxgl.Map({
 			container: 'map', // HTML container ID
