@@ -32,7 +32,7 @@ jobs:
       run: playwright install  # This command downloads the required browsers
 
     - name: Replace API_KEY in HTML
-      run: sed -i "s/'ACCESS_TOKEN'/'${{ secrets.ACCESS_TOKEN }}'/g" docs/index.html
+      run: sed -i "s/'ACCESS_TOKEN'/${{ secrets.ACCESS_TOKEN }}/g" docs/index.html
 
     # Sequentially execute six notebooks and output results to logs
     - name: Execute Notebook 1
