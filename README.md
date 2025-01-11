@@ -1,4 +1,4 @@
-# Developing an Auto-Updating Database and Map of Job Openings for Ugandans in the Middle East and the Companies Recruiting
+# Developing an Auto-Updating Database and Map of Job Openings for Ugandans in the Middle East and the Recruiting Companies
 
 In this repo, I scrape, analyze and visualize data from Uganda's Ministry of Gender, Labour & Social Development External Employment Management System (EEMIS). I develop a running database of all jobs and companies that auto-updates daily, noting which jobs and companies are currently active on the recruiting site. I also develop an interactive map that shows the recruiting companies and currently open jobs.
 
@@ -42,9 +42,9 @@ In the Jupyter notebook ("4. Data Cleaning and Adding Columns.ipynb"), I clean t
 1. I read in the file "companies_and_jobs.csv" to Pandas. 
 2. I do a lot of cleaning in Pandas, including renaming and rearranging columns, splitting text to columns and using regular expressions to clean the values, changing formats of dates, etc.
 3. Because salaries are listed in the currencies of the countries where jobs were located, I use each currency code and currency amount to search xe.com to find out how much each salary would be in USD, then save it to the same list of dictionaries. I do this by transforming the dataframe to a list of dictionaries and, in a loop, using the requests library and BeautifulSoup to search xe.com and extract the amount in USD. 
-4. Using the Google Maps Geocode API, I looped through the list of dictionaries and found the latitude, longitude, city name and country name for all the company locations listed on the companies list (usually more detailed addresses than those listed on the individual company pages). 
-5. I then used regular expressions to clean the addresses listed on the company pages as well, and Geocoded these addresses too. 
-6. Bringing the list back to Pandas, I created a new column for latitude and longitude to be shown on the map, taking the values from the companies list Geocoded locations (if not NaN) and if NaN, taking the values from the individual company pages' Geocoded locations.
+4. Using the Google Maps Geocode API, I loop through the list of dictionaries and found the latitude, longitude, city name and country name for all the company locations listed on the companies list (usually more detailed addresses than those listed on the individual company pages). 
+5. I then use regular expressions to clean the addresses listed on the company pages as well, and Geocoded these addresses too. 
+6. Bringing the list back to Pandas, I create a new column for latitude and longitude to be shown on the map, taking the values from the companies list Geocoded locations (if not NaN) and if NaN, taking the values from the individual company pages' Geocoded locations.
 7. I create some new columns: for the length of jobs, through calculating the difference between the job start and end dates, after converting them to dates formats, and for company registration years through regexing the registration dates (only available for companies with open jobs).
 8. I save the revised dataframe to "cleaned_data_eemis.csv".
 
@@ -95,6 +95,8 @@ I put the index.html file online using Github Pages at https://annikamcginnis.gi
 I auto-update the scraping and analysis process (Jupyter notebooks 1-6) using Github Actions Simple Workflow. This ensures that the previous day's data is saved at "companies_last.csv" and "jobs_last.csv" and today's data is saved at "companies.csv" and "jobs.csv". The file "companies_and_jobs.csv" is therefore a running database of all companies and jobs listed on the site since January 9, 2025, with currently open companies and jobs noted in the active_company and active_job columns. 
 
 The map shows all companies (including those not currently listed on the site) and all currently open job positions. 
+
+*Note: "/data from 12:8:24" contains data scraped on Dec. 8, 2024, which is not included in the running database. The running database begins on Jan. 10, 2025.*
 
 
 
