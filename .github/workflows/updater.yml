@@ -16,6 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
         API_KEY: ${{ secrets.API_KEY }}  # Reference the GitHub Secret
+        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
     steps:
     - name: Check out this repo
       uses: actions/checkout@v2
@@ -30,9 +31,6 @@ jobs:
 
     - name: Install Playwright browsers
       run: playwright install  # This command downloads the required browsers
-
-    - name: Replace API_KEY in HTML
-      run: sed -i "s/'ACCESS_TOKEN'/${{ secrets.ACCESS_TOKEN }}/g" docs/index.html
 
     # Sequentially execute six notebooks and output results to logs
     - name: Execute Notebook 1
