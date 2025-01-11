@@ -1,0 +1,27 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # Trigger on push to the main branch (or another branch of your choice)
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      
+      # Step 2: Set up environment for Mapbox Token (replace placeholder)
+      - name: Replace Mapbox token in docs/index.html
+        run: |
+          sed -i 's|${ACCESS_TOKEN}|${{ secrets.ACCESS_TOKEN }}|' docs/index.html
+
+      # Step 3: Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages  # Branch to deploy to (typically 'gh-pages')
+          folder: docs      # Folder to deploy (your docs folder containing the HTML files)
