@@ -94,7 +94,7 @@ I put the index.html file online using Github Pages at https://annikamcginnis.gi
 
 I auto-update the scraping and analysis process (Jupyter notebooks 1-6) using Github Actions Simple Workflow. This ensures that the previous day's data is saved at "companies_last.csv" and "jobs_last.csv" and today's data is saved at "companies.csv" and "jobs.csv". The file "companies_and_jobs.csv" is therefore a running database of all companies and jobs listed on the site since January 9, 2025, with currently open companies and jobs noted in the active_company and active_job columns. 
 
-The map shows all companies (including those not currently listed on the site) and all currently open job positions. 
+The map shows all companies (including those not currently listed on the site) and all currently open job positions.
 
 *Note: "/data from 12:8:24" contains data scraped on Dec. 8, 2024, which is not included in the running database. The running database begins on Jan. 10, 2025.*
 
