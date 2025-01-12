@@ -1,4 +1,4 @@
-# Developing an Auto-Updating Database and Map of Job Openings for Ugandans in the Middle East and the Recruiting Companies
+# Developing an Auto-Updating Database and Map of Job Openings for Ugandans in the Middle East and the Recruiting Companies 
 
 In this repo, I scrape, analyze and visualize data from Uganda's Ministry of Gender, Labour & Social Development External Employment Management System (EEMIS). I develop a running database of all jobs and companies that auto-updates daily, noting which jobs and companies are currently active on the recruiting site. I also develop an interactive map that shows the recruiting companies and currently open jobs.
 
