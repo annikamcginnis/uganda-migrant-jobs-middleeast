@@ -168,4 +168,38 @@
 
 <div id="articlePlace"><p>In Uganda, thousands of young people, mainly women, are migrating to the Middle East for low-skilled jobs primarily in domestic labor. Despite the promise of a secure income and savings that they will be able to send back home to their families, reports have illuminated that many people find themselves in exploitative positions, and some find it difficult to return to their home country. Uganda’s Ministry of Gender, Labour & Social Development has recently started publishing an ongoing list of officially vetted companies recruiting these positions abroad and their specific job openings on its External Employment Management System. Explore this map to find out more about the companies hiring and their open positions.</p></div>
 <hr>
-<div id="footer"><p><i>This website was made for a class in the 2024-2025 Columbia University Data Journalism master's program, by Annika McGinnis.<br>The map shows data from the <a href="https://eemis.mglsd.go.ug/" target="_blank">Uganda Ministry of Gender, Labour & Social Development External Employment M
+<div id="footer"><p><i>This website was made for a class in the 2024-2025 Columbia University Data Journalism master's program, by Annika McGinnis.<br>The map shows data from the <a href="https://eemis.mglsd.go.ug/" target="_blank">Uganda Ministry of Gender, Labour & Social Development External Employment Management System</a>. It auto-updates daily. Get the <a href="https://github.com/annikamcginnis/uganda_migrant_jobs_middleeast" target="_blank">data</a>.</i></p></div>
+
+</div>
+
+<script type="text/javascript" src="uganda_migrant_jobs_map_1.js"></script>
+<script type="text/javascript" src="uganda_migrant_jobs_map_2.js"></script>
+
+<script type="text/javascript">
+	// Mapbox public access token
+	mapboxgl.accessToken = 'pk.eyJ1IjoibWNnaW5uaXNhbm5pa2EiLCJhIjoiY201cjhtMWN6MDgxcjJrb25raGs4MmFjayJ9.6MGB4e-uZHWgJu4BN6hglA';
+
+	var map = new mapboxgl.Map({
+		container: 'map',
+		style: 'mapbox://styles/mapbox/light-v10',
+		center: [ 32.59551637737115, 0.3183500203624279],
+		zoom: 11,
+		projection: 'naturalEarth'
+	});
+	map.addControl(new mapboxgl.NavigationControl(), 'top-left')
+
+	var map2 = new mapboxgl.Map({
+		container: 'map2',
+		style: 'mapbox://styles/mapbox/light-v10',
+		center: [ 46.69338354390172, 24.719840483830474],
+		zoom: 4,
+		projection: 'naturalEarth'
+	});
+	map2.addControl(new mapboxgl.NavigationControl(), 'top-left')
+
+	// Additional map setup and interaction scripts here
+</script>
+
+</body>
+
+</html>
