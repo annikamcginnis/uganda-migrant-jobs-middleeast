@@ -88,7 +88,7 @@ When hovering over a point, the map provides information on the company name and
 
 ## Step 8: Creating a Webpage on Github Pages
 
-I put the index.html file online using Github Pages at https://annikamcginnis.github.io/uganda_migrant_jobs_middleeast/
+I put the index.html file online using Github Pages at https://annikamcginnis.github.io/uganda-migrant-jobs-middleeast/
 
 ## Step 9: Auto-Updating the Database and Map Using Github Actions
 
