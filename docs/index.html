@@ -93,18 +93,19 @@ TO MAKE YOUR FONTS AND LAYOUTS NICE AND LOVELY
 	/* Each map container */
 	#map, #map2 {
 		flex: 1;
-		min-width: 400px;  /* Wider minimum width for maps */
-		max-width: 800px;  /* Maps can grow but won't exceed this width */
-		height: 500px;     /* Fixed height for maps */
+		min-width: 300px; /* Ensure maps have a minimum width on all screens */
+		max-width: 800px;
+		height: 500px;
+		min-height: 300px; /* Ensure maps have a minimum height */
 	}
 
 	/* Right-align the first map and left-align the second map */
 	#map {
-		margin-left: auto; /* Align to the right */
+		margin-left: auto;
 	}
 
 	#map2 {
-		margin-right: auto; /* Align to the left */
+		margin-right: auto;
 	}
 
 	/* Responsive Design: Stack maps vertically on small screens */
@@ -115,8 +116,10 @@ TO MAKE YOUR FONTS AND LAYOUTS NICE AND LOVELY
 		}
 
 		#map, #map2 {
-			width: 100%; /* Full width on smaller screens */
+			width: 100%;
+			min-width: 100%; /* Ensure full width on smaller screens */
 			margin-bottom: 20px; /* Space between stacked maps */
+			height: 300px; /* Reduce height to fit better on smaller screens */
 		}
 	}
 
@@ -145,8 +148,8 @@ TO MAKE YOUR FONTS AND LAYOUTS NICE AND LOVELY
 		margin: 10px;
 		font-size: large;
 		text-align: left;
-		padding-left: 20px;  /* Added left padding */
-		padding-right: 20px; /* Added right padding */
+		padding-left: 20px;
+		padding-right: 20px;
 	}
 
 	/* Styling for text */
