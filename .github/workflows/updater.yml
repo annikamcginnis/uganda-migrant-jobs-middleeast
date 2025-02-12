@@ -27,7 +27,7 @@ jobs:
         python-version: '3.10'
 
     - name: Install Python packages
-      run: pip install playwright jupyter lxml pandas requests beautifulsoup4 html5lib python-dotenv matplotlib
+      run: pip install playwright jupyter lxml pandas requests beautifulsoup4 html5lib python-dotenv matplotlib requests-cache
 
     - name: Install Playwright browsers
       run: playwright install  # This command downloads the required browsers
