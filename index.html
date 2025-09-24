@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-
+<head> 
+	
 	<title>MIGRATING TO BE MAIDS: Companies based in Uganda and the Middle East are recruiting workers from Uganda for domestic labor jobs in Saudi Arabia</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -93,18 +93,19 @@ TO MAKE YOUR FONTS AND LAYOUTS NICE AND LOVELY
 	/* Each map container */
 	#map, #map2 {
 		flex: 1;
-		min-width: 400px;  /* Wider minimum width for maps */
-		max-width: 800px;  /* Maps can grow but won't exceed this width */
-		height: 500px;     /* Fixed height for maps */
+		min-width: 300px; /* Ensure maps have a minimum width on all screens */
+		max-width: 800px;
+		height: 500px;
+		min-height: 300px; /* Ensure maps have a minimum height */
 	}
 
 	/* Right-align the first map and left-align the second map */
 	#map {
-		margin-left: auto; /* Align to the right */
+		margin-left: auto;
 	}
 
 	#map2 {
-		margin-right: auto; /* Align to the left */
+		margin-right: auto;
 	}
 
 	/* Responsive Design: Stack maps vertically on small screens */
@@ -115,8 +116,10 @@ TO MAKE YOUR FONTS AND LAYOUTS NICE AND LOVELY
 		}
 
 		#map, #map2 {
-			width: 100%; /* Full width on smaller screens */
+			width: 100%;
+			min-width: 100%; /* Ensure full width on smaller screens */
 			margin-bottom: 20px; /* Space between stacked maps */
+			height: 300px; /* Reduce height to fit better on smaller screens */
 		}
 	}
 
@@ -145,8 +148,8 @@ TO MAKE YOUR FONTS AND LAYOUTS NICE AND LOVELY
 		margin: 10px;
 		font-size: large;
 		text-align: left;
-		padding-left: 20px;  /* Added left padding */
-		padding-right: 20px; /* Added right padding */
+		padding-left: 20px;
+		padding-right: 20px;
 	}
 
 	/* Styling for text */
@@ -180,7 +183,7 @@ WHATEVER INTRODUCTORY TEXT YOU WANT CAN GO INTO THE ARTICLEPLACE DIV
  -->
 <div> 
 
-<div id='header'> <h1 style="font-size: 50px">MIGRATING TO BE MAIDS</h1><h2>The companies recruiting Ugandan workers for domestic labor jobs in the Middle East</h2><br>
+<div id='header'> <h1 style="font-size: 50px">MIGRATING TO BE MAIDS</h1><h2>The companies recruiting Ugandan workers for domestic labor jobs in the Gulf</h2><br>
 
 
 <div id="container">
@@ -192,7 +195,7 @@ WHATEVER INTRODUCTORY TEXT YOU WANT CAN GO INTO THE ARTICLEPLACE DIV
 	</div>
 </div>
 
-<div id="articlePlace"><p>In Uganda, thousands of young people, mainly women, are migrating to the Middle East for low-skilled jobs primarily in domestic labor. Despite the promise of a secure income and savings that they will be able to send back home to their families, reports have illuminated that many people find themselves in exploitative positions, and some find it difficult to return to their home country. Uganda’s Ministry of Gender, Labour & Social Development has recently started publishing an ongoing list of officially vetted companies recruiting these positions abroad and their specific job openings on its External Employment Management System. Explore this map to find out more about the companies hiring and their open positions.</p></div>
+<div id="articlePlace"><p>In Uganda, thousands of young people, mainly women, are migrating to Saudi Arabia and other countries in the Persian Gulf for low-skilled jobs primarily in domestic labor. Despite the promise of a secure income and savings that they will be able to send back home to their families, reports have illuminated that many people find themselves in exploitative positions, and some find it difficult to return to their home country. Uganda’s Ministry of Gender, Labour & Social Development has recently started publishing an ongoing list of officially vetted companies recruiting these positions abroad and their specific job openings on its External Employment Management System. Explore this map to find out more about the companies hiring and their open positions.</p></div>
 <hr>
 <div id="footer"><p><i>This website was made for a class in the 2024-2025 Columbia University Data Journalism master's program, by Annika McGinnis.<br>The map shows data from the <a href="https://eemis.mglsd.go.ug/" target="_blank">Uganda Ministry of Gender, Labour & Social Development External Employment Management System</a>. It auto-updates daily. Get the <a href="https://github.com/annikamcginnis/uganda_migrant_jobs_middleeast" target="_blank">data</a>.</i></p></div>
 
@@ -236,7 +239,7 @@ ALL THE COMMENTS FROM HERE WE'LL BE IN JAVASCRIPT COMMENTS //
 // map.fitBounds(turf.bbox(infoData), { padding: 120, linear: true })
 //If you want to control the centering and zoom yourself, comment out that line.
 		// Mapbox public access token
-		mapboxgl.accessToken = 'pk.eyJ1IjoibWNnaW5uaXNhbm5pa2EiLCJhIjoiY201cjhtMWN6MDgxcjJrb25raGs4MmFjayJ9.6MGB4e-uZHWgJu4BN6hglA';
+		mapboxgl.accessToken = 'pk.eyJ1IjoibWNnaW5uaXNhbm5pa2EiLCJhIjoiY21mdjBkMXVoMDJpazJycXpocWtzbjRteSJ9.6Ec9BT1XDBKeSgPRSqeOmA';
 
 		var map = new mapboxgl.Map({
 			container: 'map', // HTML container ID
